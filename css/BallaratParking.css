@@ -1,10 +1,10 @@
 
-html, body {
+html, body, #mapSection, ng-map {
 	height: 100%;
 }
-ng-map {
-	height: 80%;
-}
-.parkInfomation {
+
+
+#InformationSection {
 	height: 20%;
 }
+
