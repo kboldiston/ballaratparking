@@ -17,8 +17,9 @@
 	<script src="js/BallaratParking.js"></script>
 </head>
 
-<body ng-app="ballaratParking" ng-cloak>
+<body ng-app="ballaratParking" ng-cloak ng-controller="FilterCtrl">
 
+	<!-- heading and main menu -->
 	<md-toolbar class="md-hue-2">
 		<div class="md-toolbar-tools" ng-controller="MenuCtrl">
 			<md-button class="md-icon-button" aria-label="settings"
@@ -31,13 +32,14 @@
 		</div>
 	</md-toolbar>
 
+	<!-- sidebar menu -->
 	<md-sidenav 
 		class="md-sidenav-left"
 		md-component-id="left">
 		<md-toolbar class="md-hue-2">
 			<h2 class="md-toolbar-tools">Menu</h2>
 		</md-toolbar>
-		<md-content layout-padding ng-controller="FilterCtrl">
+		<md-content layout-padding>
 			<fieldset class="filter-fieldset">
 					<legend class="filter-legend">
 						Filters
@@ -63,17 +65,21 @@
 
   	
 
-	<div id="mapSection"ng-controller="getParkInfo as parkInfo" >
+	<div id="mapSection" ng-controller="getParkInfo as parkInfo" >
 		<!-- centre map on ballarat central -->
 		<ng-map center="[-37.561960, 143.855765]" zoom="17">
 			<!-- load parking machines -->
-			<map-data load-geo-json=
-				"http://data.gov.au/geoserver/ballarat-parking-machines/wfs?request=GetFeature&typeName=919da8f8_0aa6_4f90_9d21_45331e4bea7c&outputFormat=json"
-			</map-data>	
+			<span ng-if="exists('Parking Meters', selected)">
+				<map-data load-geo-json=
+					"http://data.gov.au/geoserver/ballarat-parking-machines/wfs?request=GetFeature&typeName=919da8f8_0aa6_4f90_9d21_45331e4bea7c&outputFormat=json"
+				</map-data>
+			</span>	
 			<!-- load car parks -->
-			<map-data load-geo-json=
-				"http://data.gov.au/geoserver/ballarat-car-parking-areas/wfs?request=GetFeature&typeName=eb670c53_1fbc_4ca5_9ffd_4e336fdb0763&outputFormat=json"
-			</map-data> 
+			<span ng-if="exists('Car Parks', selected)">
+				<map-data load-geo-json=
+					"http://data.gov.au/geoserver/ballarat-car-parking-areas/wfs?request=GetFeature&typeName=eb670c53_1fbc_4ca5_9ffd_4e336fdb0763&outputFormat=json"
+				</map-data> 
+			</span>
 			<!-- get info for parking on click -->
 			<map-data on-click="parkInfo.onClick()"></map-data>
 		</ng-map>
@@ -81,6 +87,7 @@
 	<div id=informationSection">
 		<h2>Park Information</h2>
 		{{parkInfo.attributes}}
+
 	</div>
 
 
@@ -117,6 +124,7 @@
 		}).controller('FilterCtrl', function($scope) {
 			$scope.items = ['Car Parks', 'Parking Meters'];
 			$scope.selected = ['Car Parks', 'Parking Meters'];
+			$scope.selected = [];
 			$scope.toggle = function (item, list) {
 				var idx = list.indexOf(item);
 				if (idx > -1) {
