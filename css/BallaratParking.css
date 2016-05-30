@@ -1,8 +1,11 @@
 
-html, body, #mapSection, ng-map {
+html, body {
 	height: 100%;
 }
 
+#mapSection, ng-map {
+	height: calc(100% - 64px);
+}
 
 #InformationSection {
 	height: 20%;
