@@ -19,7 +19,6 @@
 
 <body ng-app="ballaratParking" ng-cloak>
 
-	</md-fab-toolbar>
 	<md-toolbar class="md-hue-2">
 		<div class="md-toolbar-tools" ng-controller="MenuCtrl">
 			<md-button class="md-icon-button" aria-label="settings"
@@ -36,10 +35,29 @@
 		class="md-sidenav-left"
 		md-component-id="left">
 		<md-toolbar class="md-hue-2">
-			<h2 class="md-toolbar-tools">Filters</h2>
+			<h2 class="md-toolbar-tools">Menu</h2>
 		</md-toolbar>
-		<md-content layout-padding>
-
+		<md-content layout-padding ng-controller="FilterCtrl">
+			<fieldset class="filter-fieldset">
+					<legend class="filter-legend">
+						Filters
+					</legend>
+					<div layout="row" layout-wrap flex>
+						<div flex-xs flex="50">
+							<md-checkbox arial="select all"
+				   				ng-checked="isChecked()"
+		  						md-indeterminate="isIndeterminate()"
+		 						ng-click="toggleAll()">
+								<span ng-if="isChecked()">Un-</span>Select All
+							</md-checkbox>
+						</div>
+						<div class="select-all-filters" flex="100" ng-repeat="item in items">
+							<md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+								{{item}}
+							</md-checkbox>
+						</div>
+					</div>
+			</fieldset>
 		</md-content>
 	</md-sidenav>
 
@@ -96,6 +114,36 @@
 				}
 			}
 
+		}).controller('FilterCtrl', function($scope) {
+			$scope.items = ['Car Parks', 'Parking Meters'];
+			$scope.selected = ['Car Parks', 'Parking Meters'];
+			$scope.toggle = function (item, list) {
+				var idx = list.indexOf(item);
+				if (idx > -1) {
+					list.splice(idx, 1);
+				}
+				else {
+					list.push(item);
+				}
+			};
+			$scope.exists = function(item, list) {
+				return list.indexOf(item) > -1;
+			};
+			$scope.isIndeterminate = function() {
+				return ($scope.selected.length !== 0 &&
+							$scope.selected.length !== $scope.items.length);
+			};
+			$scope.isChecked = function() {
+				return $scope.selected.length === $scope.items.length;
+			};
+			$scope.toggleAll = function() {
+				if($scope.selected.length === $scope.items.length) {
+					$scope.selected = [];
+				} else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
+					$scope.selected = $scope.items.slice(0);
+				}
+			}
+		
 		});
 	</script>
 </body>
