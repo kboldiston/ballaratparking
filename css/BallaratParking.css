@@ -1,0 +1,10 @@
+
+html, body {
+	height: 100%;
+}
+ng-map {
+	height: 80%;
+}
+.parkInfomation {
+	height: 20%;
+}
