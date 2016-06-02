@@ -11,7 +11,7 @@ var app=angular.module('bpModule', ['ngMap']);
 		console.log(thePark);
 		parkInfo.attributes = event.feature.H; /* this is the info on the park/meter */
 		console.log(parkInfo.map);
-		parkInfo.map.showInfoWindow('informationSection');
+		parkInfo.map.showInfoWindow('informationSection', thePark.attributes.id);
 	}
 
 	parkInfo.hideDetail = function() {
