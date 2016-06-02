@@ -3,10 +3,11 @@ var app=angular.module('bpModule', ['ngMap']);
 	var parkInfo = this;
 	NgMap.getMap().then(function(map) {
 		parkInfo.map = map;
+		console.log(parkInfo);
 	})
 
 	parkInfo.onClick = function(event) {
 		parkInfo.attributes = event.feature.H; /* this is the info on the park/meter */
-		console.log(event);
+		console.log(parkInfo);
 	};
 });
