@@ -36,14 +36,16 @@
 	<md-sidenav 
 		class="md-sidenav-left"
 		md-component-id="left">
-		<md-toolbar class="md-hue-2" ng-controller="MenuCtrl">
-			<h2 class="md-toolbar-tools">
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools" ng-controller="MenuCtrl">
 				<md-button class="md-icon-button" aria-label="settings"
-				 ng-click="toggleLeft()" >
+					ng-click="toggleLeft()" >
 					<md-icon>clear</md-icon>
 				</md-button>
-				Menu
-			</h2>
+				<h2 class="md-toolbar-tools">
+					Menu
+				</h2>
+			</div>
 		</md-toolbar>
 		<md-content layout-padding>
 			<fieldset class="filter-fieldset">
