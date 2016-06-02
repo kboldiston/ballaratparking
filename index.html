@@ -83,14 +83,14 @@
 				</map-data>
 			</span>	
 			<!-- load car parks -->
-			<span ng-if="exists('Car Parks', selected)">
+			<span id="carParks" ng-if="exists('Car Parks', selected)">
 				<map-data load-geo-json=
 					"http://data.gov.au/geoserver/ballarat-car-parking-areas/wfs?request=GetFeature&typeName=eb670c53_1fbc_4ca5_9ffd_4e336fdb0763&outputFormat=json"
 				</map-data> 
 			</span>
 
 			<!-- get info for parking on click -->
-			<map-data on-click="parkInfo.onClick(parkInfo)"></map-data>
+			<map-data on-click="parkInfo.onClick(parkInfo,'carParks')"></map-data>
 
 			<info-window id="informationSection">
 				<div ng-non-bindable>	
