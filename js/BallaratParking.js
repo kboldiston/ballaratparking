@@ -8,6 +8,10 @@ var app=angular.module('bpModule', ['ngMap']);
 
 	parkInfo.onClick = function(event) {
 		parkInfo.attributes = event.feature.H; /* this is the info on the park/meter */
-		console.log(parkInfo);
-	};
+		parkInfo.map.showInfoWindow('informationSection');
+	}
+
+	parkInfo.hideDetail = function() {
+		parkInfo.map.hideInfoWindow('informationSection');
+	}
 });
