@@ -7,7 +7,8 @@ var app=angular.module('bpModule', ['ngMap']);
 		console.log(parkInfo);
 	})
 
-	parkInfo.onClick = function(event) {
+	parkInfo.onClick = function(event, thePark) {
+		console.log(thePark);
 		parkInfo.attributes = event.feature.H; /* this is the info on the park/meter */
 		console.log(parkInfo.map);
 		parkInfo.map.showInfoWindow('informationSection');
