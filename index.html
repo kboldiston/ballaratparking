@@ -138,10 +138,13 @@
 			$scope.selected = [];
 			$scope.toggle = function (item, list) {
 				var idx = list.indexOf(item);
+				/*if the item is in the list (data showing)*/ 
+				/*then remove the item from the list       */
 				if (idx > -1) {
 					list.splice(idx, 1);
-					removeData(item,list);
+					this.removeData(item,list);
 				}
+				/* else add the data to the list */
 				else {
 					list.push(item);
 				}
