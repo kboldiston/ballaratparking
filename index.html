@@ -90,7 +90,7 @@
 			</span>
 
 			<!-- get info for parking on click -->
-			<map-data on-click="parkInfo.showInfoWindow(event, 'informationSection')"></map-data>
+			<map-data on-click="parkInfo.onClick(event)"></map-data>
 
 			<info-window id="informationSection">
 				<div ng-non-bindable>	
@@ -140,11 +140,17 @@
 				var idx = list.indexOf(item);
 				if (idx > -1) {
 					list.splice(idx, 1);
+					removeData(item,list);
 				}
 				else {
 					list.push(item);
 				}
 			};
+
+			$scope.removeData = function (item, list) {
+				console.log(item);
+			};
+
 			$scope.exists = function(item, list) {
 				return list.indexOf(item) > -1;
 			};
