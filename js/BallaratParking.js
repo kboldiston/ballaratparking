@@ -14,6 +14,25 @@ var app=angular.module('bpModule', ['ngMap']);
 		parkInfo.map.showInfoWindow('informationSection', thePark.attributes.id);
 	}
 
+	parkInfo.deleteMarkers = function(dataType) {
+		map = parkInfo.map;
+		console.log(map);
+		map.data.forEach(function (feature) {
+			if(typeof feature.f.area === 'undefined'){
+				featureSource = 'Car Park';
+			}
+			if(typeof feature.f.area !== 'undefined'){
+				featureSource = 'Parking Meter';
+			}
+
+
+			if(featureSource === dataType) {
+				map.data.remove(feature);
+			} 
+
+		})
+	}
+
 	parkInfo.hideDetail = function() {
 		parkInfo.map.hideInfoWindow('informationSection');
 	}

@@ -77,17 +77,19 @@
 		<!-- centre map on ballarat central -->
 		<ng-map center="[-37.561960, 143.855765]" zoom="17">
 			<!-- load parking machines -->
-			<span ng-if="exists('Parking Meters', selected)">
+			<span ng-if="exists('Parking Meters', selected)" ng-init="parkInfo.deleteMarkers()">
 				<map-data load-geo-json=
 					"http://data.gov.au/geoserver/ballarat-parking-machines/wfs?request=GetFeature&typeName=919da8f8_0aa6_4f90_9d21_45331e4bea7c&outputFormat=json"
 				</map-data>
 			</span>	
+			<span ng-if="!exists('Parking Meters', selected)" ng-init="parkInfo.deleteMarkers('Parking Meter')"></span>
 			<!-- load car parks -->
 			<span id="carParks" ng-if="exists('Car Parks', selected)">
 				<map-data load-geo-json=
 					"http://data.gov.au/geoserver/ballarat-car-parking-areas/wfs?request=GetFeature&typeName=eb670c53_1fbc_4ca5_9ffd_4e336fdb0763&outputFormat=json"
 				</map-data> 
 			</span>
+			<span id="carParksNot" ng-if="!exists('Car Parks', selected)" ng-init="parkInfo.deleteMarkers('Car Park')"></span>
 
 			<!-- get info for parking on click -->
 			<map-data on-click="parkInfo.onClick(event)"></map-data>
@@ -142,16 +144,11 @@
 				/*then remove the item from the list       */
 				if (idx > -1) {
 					list.splice(idx, 1);
-					this.removeData(item,list);
 				}
 				/* else add the data to the list */
 				else {
 					list.push(item);
 				}
-			};
-
-			$scope.removeData = function (item, list) {
-				console.log(item);
 			};
 
 			$scope.exists = function(item, list) {
