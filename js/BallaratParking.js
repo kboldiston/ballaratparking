@@ -127,13 +127,13 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 });
 function DialogController($scope, $mdDialog) {
 	$scope.hide = function() {
- 		mdDialog.hide();
+ 		$mdDialog.hide();
 	};
 	$scope.cancel = function() {
-		mdDialog.cancel();
+		$mdDialog.cancel();
 	};
 	$scope.answer = function(answer) {
-		mdDialog.hide(answer);
+		$mdDialog.hide(answer);
 	};
 }
 	
