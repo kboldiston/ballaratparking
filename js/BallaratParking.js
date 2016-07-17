@@ -9,13 +9,15 @@ app.controller('getParkInfo', function($scope, NgMap) {
 
 	parkInfo.onClick = function(event) {
 		feature = event.feature.f; /* this is the info on the park/meter */
-		parkInfo.map.showInfoWindow('informationSection', feature.id);
+		console.log(feature);
+	//	parkInfo.map.showInfoWindow('informationSection', feature.id);
+		//broadcast to ngmap controller to remove items 
+		$scope.$broadcast("showSign", {'feature': feature});
 	}
 
 
 	parkInfo.deleteMarkers = function(dataType) {
 		map = parkInfo.map;
-		console.log("remove data"+dataType);
 		map.data.forEach(function (feature) {
 			if(dataType === '*') {
 				map.data.remove(feature);
@@ -103,5 +105,35 @@ app.controller('FilterCtrl', function($scope) {
 	}
 
 });
-	
+
+app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
+	$scope.status = ' ';
+	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+	$scope.showSign = function(ev) {
+		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+		$mdDialog.show({
+			controller: DialogController,
+			templateUrl: './sign.tmpl.html',
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose: true,
+			fullscreen: useFullScreen
+		})
+	}
+
+	$scope.$on('showSign', function(event, args) {
+		$scope.showSign();
+	})
+});
+function DialogController($scope, $mdDialog) {
+	$scope.hide = function() {
+ 		mdDialog.hide();
+	};
+	scope.cancel = function() {
+		mdDialog.cancel();
+	};
+	$scope.answer = function(answer) {
+		mdDialog.hide(answer);
+	};
+}
 	

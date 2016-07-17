@@ -91,15 +91,12 @@
 			<!-- get info for parking on click -->
 			<map-data on-click="parkInfo.onClick(event)"></map-data>
 
-			<info-window id="informationSection">
-				<div ng-non-bindable>	
-					<h2>Park Information</h2>
-					{{parkInfo.attributes}}
-				</div>
-
-			</info-window>
 		</ng-map>
 	<div>
+	<div ng-controller="dialogCtrl">	
+		<h2>Park Information</h2>
+		{{parkInfo.attributes}}
+	</div>
 
 
 	<!-- Angular Material requires Angular.js Libraries -->
