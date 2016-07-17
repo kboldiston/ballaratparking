@@ -109,7 +109,7 @@ app.controller('FilterCtrl', function($scope) {
 app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 	$scope.status = ' ';
 	$scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-	$scope.showSign = function(ev) {
+	$scope.showSign = function(ev, feature) {
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
 			controller: DialogController,
@@ -122,7 +122,8 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 	}
 
 	$scope.$on('showSign', function(event, args) {
-		$scope.showSign();
+		var feature = args.feature;
+		$scope.showSign(event, feature);
 	})
 });
 function DialogController($scope, $mdDialog) {
