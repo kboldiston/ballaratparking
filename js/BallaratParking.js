@@ -17,17 +17,19 @@ app.controller('getParkInfo', function($scope, NgMap) {
 		map = parkInfo.map;
 		console.log("remove data"+dataType);
 		map.data.forEach(function (feature) {
-			if(typeof feature.f.area === 'undefined'){
-				featureSource = 'Car Parks';
-			}
-			if(typeof feature.f.area !== 'undefined'){
-				featureSource = 'Parking Meters';
-			}
-		
-			if(featureSource === dataType) {
+			if(dataType === '*') {
 				map.data.remove(feature);
-			} 
-
+			} else {
+				if(typeof feature.f.area === 'undefined'){
+					featureSource = 'Car Parks';
+				}
+				if(typeof feature.f.area !== 'undefined'){
+					featureSource = 'Parking Meters';
+				}
+				if(featureSource === dataType) {
+					map.data.remove(feature);
+				} 
+			}
 		})
 	}
 
@@ -93,6 +95,8 @@ app.controller('FilterCtrl', function($scope) {
 	$scope.toggleAll = function() {
 		if($scope.selected.length === $scope.items.length) {
 			$scope.selected = [];
+			//broadcast to ngmap controller to remove items 
+			$scope.$broadcast("removeMapData", {'item': '*'});
 		} else if ($scope.selected.length === 0 || $scope.selected.length > 0) {
 			$scope.selected = $scope.items.slice(0);
 		}
