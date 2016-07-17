@@ -119,7 +119,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 			clickOutsideToClose: true,
 			fullscreen: useFullScreen,
 			locals: {
-				feature: feature
+				'feature': feature
 			}
 		})
 	}
