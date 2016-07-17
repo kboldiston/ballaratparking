@@ -117,7 +117,10 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
-			fullscreen: useFullScreen
+			fullscreen: useFullScreen,
+			locals: {
+				feature: feature
+			}
 		})
 	}
 
