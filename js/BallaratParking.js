@@ -126,7 +126,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 
 	$scope.$on('showSign', function(event, args) {
 		var feature = args.feature;
-		$scope.showSign(event, feature);
+		$scope.showSign(feature);
 	})
 });
 function DialogController($scope, $mdDialog) {
@@ -135,9 +135,6 @@ function DialogController($scope, $mdDialog) {
 	};
 	$scope.cancel = function() {
 		$mdDialog.cancel();
-	};
-	$scope.answer = function(answer) {
-		$mdDialog.hide(answer);
 	};
 }
 	
