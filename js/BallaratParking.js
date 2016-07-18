@@ -128,7 +128,8 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 		$scope.showSign(feature);
 	})
 });
-function DialogController($scope, $mdDialog) {
+function DialogController($scope, $mdDialog, feature) {
+	$scope.feature = feature;
 	$scope.hide = function() {
  		$mdDialog.hide();
 	};
