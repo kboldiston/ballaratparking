@@ -13,7 +13,6 @@ app.controller('ngMapCtrl', function($scope, NgMap) {
 	//	parkInfo.map.showInfoWindow('informationSection', feature.id);
 		//broadcast to ngmap controller to remove items 
 		$scope.$broadcast("showSign", {'feature': feature});
-		console.log("emit");
 	}
 
 
@@ -110,7 +109,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 	$scope.showSign = function(ev, feature) {
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
-			controller: DialogController,
+			controller: 'DialogController',
 			templateUrl: './sign.tmpl.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
@@ -124,8 +123,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 
 	$scope.$on("showSign", function(event, args) {
 		var feature = args.feature;
-		console.log(args);
-		$scope.showSign(feature);
+		$scope.showSign(event, feature);
 	})
 });
 function DialogController($scope, $mdDialog, feature) {
