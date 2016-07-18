@@ -9,7 +9,6 @@ app.controller('getParkInfo', function($scope, NgMap) {
 
 	parkInfo.onClick = function(event) {
 		feature = event.feature.f; /* this is the info on the park/meter */
-		console.log(feature);
 	//	parkInfo.map.showInfoWindow('informationSection', feature.id);
 		//broadcast to ngmap controller to remove items 
 		$scope.$broadcast("showSign", {'feature': feature});
@@ -126,6 +125,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 
 	$scope.$on('showSign', function(event, args) {
 		var feature = args.feature;
+		console.log(feature);
 		$scope.showSign(feature);
 	})
 });
