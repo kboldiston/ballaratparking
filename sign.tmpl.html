@@ -3,7 +3,7 @@
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Parking </h2>
-				<div ng-if="'{{feature.class}}' !== 'Not Applicable'">
+				<div ng-if="'{{feature.class}}'!=='Not Applicable'">
 					<h3>{{feature.class}}</h3>
 				</div>
 				<span flex></span>
@@ -17,12 +17,15 @@
 					<h2>{{feature.display}}</h2>
 					<h2>{{feature.prim_time}}</h2>
 					<h3>{{feature.prim_days}}</h3>
-					<div ng-if="'{{feature.sec_time}}' !== 'Not Applicable'">
+					<div ng-if="'{{feature.sec_time}}'!=='Not Applicable'">
 						<h2>{{feature.sec_time}}</h2>
 						<h3>{{feature.sec_days}}</h3>
 					</div>
 					<h2>Cost</h2>
 					<h3>{{feature.cost}}</h3>
+					<div ng-if="'{{feature.cost}}'==='Paid'">
+						See the meter for prices
+					</div>
 				</div>
 		</md-dialog-content>
 	</form>
