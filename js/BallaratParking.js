@@ -125,7 +125,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 
 	$scope.$on('showSign', function(event, args) {
 		var feature = args.feature;
-		console.log(feature);
+		console.log(args);
 		$scope.showSign(feature);
 	})
 });
