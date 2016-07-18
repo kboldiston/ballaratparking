@@ -3,6 +3,7 @@
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Parking</h2>
+				<h3>{{feature.class}}</h3>
 				<span flex></span>
 				<md-button class="md-icon-button" ng-click="cancel()">
 		        	<md-icon aria-label="Close dialog" >clear</md-icon>
@@ -11,10 +12,15 @@
 		</md-toolbar>
 		<md-dialog-content>
 				<div class='md-dialog-content'>
+					<h2>{{feature.display}}</h2>
 					<h2>{{feature.prim_time}}</h2>
 					<h3>{{feature.prim_days}}</h3>
-					<h2>{{feature.sec_time}}</h2>
-					<h3>{{feature.sec_days}}</h3>
+					<div ng-if="{{feature.sec_time}} !== 'Not Applicable'">
+						<h2>{{feature.sec_time}}</h2>
+						<h3>{{feature.sec_days}}</h3>
+					</div>
+					<h2>Cost</h2>
+					<h3>{{feature.cost}}</h3>
 				</div>
 		</md-dialog-content>
 	</form>
