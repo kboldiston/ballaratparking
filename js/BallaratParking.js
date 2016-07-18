@@ -1,6 +1,7 @@
 var app=angular.module('ballaratParking', ['ngMap','ngMaterial']);
 
-app.controller('getParkInfo', function($scope, NgMap) {
+
+app.controller('ngMapCtrl', function($scope, NgMap) {
 	var parkInfo = this;
 
 	NgMap.getMap().then(function(map) {
@@ -12,6 +13,7 @@ app.controller('getParkInfo', function($scope, NgMap) {
 	//	parkInfo.map.showInfoWindow('informationSection', feature.id);
 		//broadcast to ngmap controller to remove items 
 		$scope.$broadcast("showSign", {'feature': feature});
+		console.log("emit");
 	}
 
 
@@ -49,7 +51,7 @@ app.controller('getParkInfo', function($scope, NgMap) {
 /**
 * You must include the dependency on 'ngMaterial' 
 */
-app.controller('MenuCtrl', function($scope, $timeout, $mdSidenav, $log){
+app.controller('ballaratParkingCtrl', function($scope, $timeout, $mdSidenav, $log){
 	$scope.toggleLeft = buildToggler('left');
 	$scope.isOpenLeft = function(){
 		return $mdSidenav('leftNavbar').isOpen();
@@ -62,11 +64,7 @@ app.controller('MenuCtrl', function($scope, $timeout, $mdSidenav, $log){
 		}
 	}
 
-});
-
-app.controller('FilterCtrl', function($scope) {
 	$scope.items = ['Car Parks', 'Parking Meters'];
-	$scope.selected = ['Car Parks', 'Parking Meters'];
 	$scope.selected = ['Car Parks'];
 	$scope.toggle = function (item, list) {
 		var idx = list.indexOf(item);
@@ -86,6 +84,7 @@ app.controller('FilterCtrl', function($scope) {
 	$scope.exists = function(item, list) {
 		return list.indexOf(item) > -1;
 	};
+
 	$scope.isIndeterminate = function() {
 		return ($scope.selected.length !== 0 &&
 					$scope.selected.length !== $scope.items.length);
@@ -123,7 +122,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 		})
 	}
 
-	$scope.$on('showSign', function(event, args) {
+	$scope.$on("showSign", function(args) {
 		var feature = args.feature;
 		console.log(args);
 		$scope.showSign(feature);
