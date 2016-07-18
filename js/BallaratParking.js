@@ -109,7 +109,7 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 	$scope.showSign = function(ev, feature) {
 		var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
 		$mdDialog.show({
-			controller: 'DialogController',
+			controller: DialogController,
 			templateUrl: './sign.tmpl.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
