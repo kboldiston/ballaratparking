@@ -1,8 +1,8 @@
-<md-dialog aria-label="Parking Sign" ng-cloak>
+<md-dialog aria-label="Parking Sign" class="sign" ng-cloak>
 	<form>
 		<md-toolbar>
 			<div class="md-toolbar-tools">
-				<h2>Parking </h2>
+				<h1>Parking&nbsp;</h1>
 				<div ng-if="feature.class!=='Not Applicable'">
 					<h3>{{feature.class}}</h3>
 				</div>
@@ -14,18 +14,22 @@
 		</md-toolbar>
 		<md-dialog-content>
 				<div class='md-dialog-content'>
-					<h2>{{feature.display}}</h2>
 					<h2>{{feature.prim_time}}</h2>
-					<h3>{{feature.prim_days}}</h3>
+					{{feature.prim_period[1]}}<br/>
+					<div class="days">
+						{{feature.prim_period[0]}}
+					</div>
 					<div ng-if="feature.sec_time!=='Not Applicable'">
 						<h2>{{feature.sec_time}}</h2>
-						<h3>{{feature.sec_days}}</h3>
+						{{feature.sec_period[1]}}<br/>
+						<div class="days">
+							{{feature.sec_period[0]}}
+						</div>
 					</div>
-					<h2>Cost</h2>
-					<h3>{{feature.cost}}</h3>
-					<div ng-if="feature.cost==='Paid'">
-						See the meter for prices
-					</div>
+					<p ng-if="feature.cost==='Paid'">
+						{{feature.cost}}<br/>
+						<em>See the meter for prices</em>
+					</p>
 				</div>
 		</md-dialog-content>
 	</form>

@@ -123,6 +123,26 @@ app.controller('dialogCtrl', function($scope, $mdDialog, $mdMedia) {
 
 	$scope.$on("showSign", function(event, args) {
 		var feature = args.feature;
+		if (feature.prim_time.toUpperCase().indexOf("HOUR") > -1) {
+			feature.prim_time = feature.prim_time.split(" ")[0]+" P";
+		}
+		if(feature.prim_time.toUpperCase().indexOf("MINUTE") > -1) {
+			feature.prim_time = feature.prim_time.split(" ")[0]+" Min";
+		}
+		if (feature.sec_time.toUpperCase().indexOf("HOUR") > -1) {
+			feature.sec_time = feature.sec_time.split(" ")[0]+" P";
+		}
+		if(feature.sec_time.toUpperCase().indexOf("MINUTE") > -1) {
+			feature.sec_time = feature.sec_time.split(" ")[0]+" Min";
+		}
+		console.log(feature);
+		if(feature.prim_days !== 'Not Applicable') {
+			feature.prim_period = feature.prim_days.toUpperCase().split(" ");
+		}
+		if(feature.sec_days !== 'Not Applicable') {
+			feature.sec_period = feature.sec_days.toUpperCase().split(" ");
+		}
+		
 		$scope.showSign(event, feature);
 	})
 });

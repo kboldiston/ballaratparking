@@ -11,3 +11,21 @@ html, body {
 	height: 20%;
 }
 
+.sign h2 {
+	font-weight: bold;
+	font-size: 36pt;
+}
+
+.sign h2 {
+	margin: 10px;
+}
+
+.sign .days {
+	font-weight: bold;
+	font-size: 18pt;
+}
+.sign {
+	text-align: center;
+	color: #0f5531;
+	font-size: 16pt;
+}
